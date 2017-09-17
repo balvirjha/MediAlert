@@ -25,19 +25,16 @@ import android.widget.LinearLayout;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.crickbuzz.balvier.medialert.R;
 import com.crickbuzz.balvier.medialert.controller.AlarmBootReciever;
 import com.crickbuzz.balvier.medialert.controller.MedicineController;
 import com.crickbuzz.balvier.medialert.controller.NotificationReciever;
-import com.crickbuzz.balvier.medialert.R;
+import com.crickbuzz.balvier.medialert.controller.Util;
 import com.crickbuzz.balvier.medialert.modal.MedicinePOJO;
 import com.crickbuzz.balvier.medialert.modal.MedicineSerializable;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by Balvier on 9/16/2017.
@@ -210,7 +207,7 @@ public class MedicineIntakeFragment extends Fragment implements View.OnClickList
                 Log.e("bvc", "rowsAdded : " + rowsAdded);
                 if (rowsAdded > 0) {
 
-                    setAlarm(convertStringToDate(new StringBuilder()
+                    setAlarm(Util.convertStringToDate(new StringBuilder()
                             .append(medicineDate.getText().toString())
                             .append(" ")
                             .append(medicineTime.getText())
@@ -263,33 +260,6 @@ public class MedicineIntakeFragment extends Fragment implements View.OnClickList
 
     }
 
-    long convertStringToDate(String actualDate) {
-
-        SimpleDateFormat convertedDate = new SimpleDateFormat("d/M/yyyy hh:mm", Locale.ENGLISH);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-
-        Date date = null;
-        try {
-            date = sdf.parse(actualDate);
-
-            Log.e("bvc", "milliseconds " + date.getTime());
-            Calendar calendar1 = Calendar.getInstance();
-            calendar1.setTimeInMillis(date.getTime());
-
-            int mYear = calendar1.get(Calendar.YEAR);
-            int mMonth = calendar1.get(Calendar.MONTH);
-            int mDay = calendar1.get(Calendar.DAY_OF_MONTH);
-            calendar1.set(Calendar.HOUR_OF_DAY, date.getHours());
-            int hr = calendar1.get(Calendar.HOUR_OF_DAY);
-            int min = calendar1.get(Calendar.MINUTE);
-            Log.e("bvc", "calendar " + mDay + " " + (mMonth + 1) + " " + mYear + " " + hr + " " + min);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        System.out.println("convertedDate.format(date) :" + convertedDate.format(date));
-        return date.getTime();
-
-    }
 
     boolean isDateSet = false, isTimeSet = false;
 

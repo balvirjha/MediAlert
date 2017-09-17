@@ -111,8 +111,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public List<MedicinePOJO> getAllMissedMedicines() {
+        List<String> dateLIst = Util.getTodayDateInRequiredFormat();
         List<MedicinePOJO> medicinePOJOList = new ArrayList<MedicinePOJO>();
-        String selectQuery = "SELECT * FROM " + TABLE_MEDICINE + " where medicine_taken ='false'";
+        String selectQuery = "SELECT * FROM " + TABLE_MEDICINE + " where medicine_taken ='false' "
+                + "and date between " + "'" + dateLIst.get(0) +"'" + " and " + "'"  + dateLIst.get(1) + "'";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -134,7 +136,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public List<MedicinePOJO> getAlltakenMedicines() {
         List<MedicinePOJO> medicinePOJOList = new ArrayList<MedicinePOJO>();
-        String selectQuery = "SELECT * FROM " + TABLE_MEDICINE + " where medicine_taken ='true'";
+        List<String> dateLIst = Util.getTodayDateInRequiredFormat();
+        String selectQuery = "SELECT * FROM " + TABLE_MEDICINE + " where medicine_taken ='true' "
+                + "and date between " + "'" + dateLIst.get(0) +"'" + " and " + "'"  + dateLIst.get(1) + "'";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
