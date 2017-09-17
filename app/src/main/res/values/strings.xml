@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MediAlert</string>
+    <string name="medicineName">Medicine name</string>
+    <string name="medicineDasages">How many tablets a day(Numbers only)</string>
+    <string name="medicineTime">Select time</string>
+    <string name="medicineDate">Select Date</string>
+    <string name="save">Save</string>
+    <string name="addMore">Add more</string>
+    <string name="showAllMissedMedicines">Show Missed medicines report</string>
+    <string name="showAllTakenMedicines">Show Taken medicines report</string>
+    <string name="MedicineTaken">Medicine Taken</string>
+    <string name="MedicineNotTaken">Medicine Not Taken</string>
+    <string name="cancelAlarm">Cancel Alarm</string>
+</resources>
