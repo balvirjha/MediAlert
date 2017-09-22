@@ -36,6 +36,8 @@ import com.crickbuzz.balvier.medialert.modal.MedicineSerializable;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by Balvier on 9/16/2017.
  */
@@ -43,6 +45,9 @@ import java.util.List;
 public class MedicineIntakeFragment extends Fragment implements View.OnClickListener,
         DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener,
         CompoundButton.OnCheckedChangeListener {
+
+    @Inject
+    MedicineController medicineController;
 
     private View mRoot;
     private AlarmManager alarmManager;
@@ -56,6 +61,11 @@ public class MedicineIntakeFragment extends Fragment implements View.OnClickList
     private Bundle bundle;
     private MedicineSerializable medicineParcelable;
     private List<MedicinePOJO> medicinePOJOList;
+
+    @Inject
+    public MedicineIntakeFragment() {
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -142,7 +152,7 @@ public class MedicineIntakeFragment extends Fragment implements View.OnClickList
                 break;
 
             case R.id.buttomShowAllMissedReport:
-                medicinePOJOList = MedicineController.getInstance(getActivity()).getAllMissedMedicine();
+                medicinePOJOList = medicineController.getAllMissedMedicine();
                 if (medicinePOJOList.size() > 0) {
                     reportFragment = new ReportFragment();
                     medicineParcelable = new MedicineSerializable(medicinePOJOList);
@@ -160,7 +170,7 @@ public class MedicineIntakeFragment extends Fragment implements View.OnClickList
                 break;
 
             case R.id.buttomShowAllTakenReport:
-                medicinePOJOList = MedicineController.getInstance(getActivity()).getAllTakenMedicine();
+                medicinePOJOList = medicineController.getAllTakenMedicine();
                 if (medicinePOJOList.size() > 0) {
                     reportFragment = new ReportFragment();
                     medicineParcelable = new MedicineSerializable(medicinePOJOList);
@@ -203,7 +213,7 @@ public class MedicineIntakeFragment extends Fragment implements View.OnClickList
                 medicinePOJO = new MedicinePOJO(medicineName.getText().toString(),
                         Integer.parseInt(medicineDosage.getText().toString()),
                         medicineDate.getText().toString(), medicineTime.getText().toString(), true, false);
-                rowsAdded = MedicineController.getInstance(getActivity()).addMedicine(medicinePOJO);
+                rowsAdded = medicineController.addMedicine(medicinePOJO);
                 Log.e("bvc", "rowsAdded : " + rowsAdded);
                 if (rowsAdded > 0) {
 
@@ -215,7 +225,7 @@ public class MedicineIntakeFragment extends Fragment implements View.OnClickList
                 }
             } else {
 
-                medicinePOJONew = MedicineController.getInstance(getActivity()).getLatestEnteredMedicines();
+                medicinePOJONew = medicineController.getLatestEnteredMedicines();
                 medicinePOJONew.setMedicineName(medicineName.getText().toString());
                 medicinePOJONew.setDosage(Integer.parseInt(medicineDosage.getText().toString()));
                 medicinePOJONew.setDate(medicineDate.getText().toString());
@@ -227,7 +237,7 @@ public class MedicineIntakeFragment extends Fragment implements View.OnClickList
                         Integer.parseInt(medicineDosage.getText().toString()),
                         medicineDate.getText().toString(), medicineTime.getText().toString(), cancelAlarm.isChecked(), checkTaken.isChecked());
                 medicinePOJO.setId(medicinePOJONew.getId());
-                rowsAdded = MedicineController.getInstance(getActivity()).updateMedicine(medicinePOJONew);
+                rowsAdded = medicineController.updateMedicine(medicinePOJONew);
                 Log.e("bvc", "rowsUpdated : " + rowsAdded);
                 if (rowsAdded > 0 && cancelAlarm.isChecked()) {
                     Intent alarmintent = new Intent(getActivity().getApplicationContext(), NotificationReciever.class);

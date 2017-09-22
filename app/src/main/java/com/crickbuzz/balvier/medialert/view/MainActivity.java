@@ -3,19 +3,38 @@ package com.crickbuzz.balvier.medialert.view;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.crickbuzz.balvier.medialert.MediAlertApplication;
 import com.crickbuzz.balvier.medialert.R;
+import com.crickbuzz.balvier.medialert.controller.MedicineController;
+
+import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity {
+
+    @Inject
+    MedicineIntakeFragment medicineIntakeFragment;
+    private MainActivityComponent activityComponent;
+
+    public MainActivityComponent getActivityComponent() {
+        if (activityComponent == null) {
+            activityComponent = DaggerMainActivityComponent.builder()
+                    .mainActivityModule(new MainActivityModule(this))
+                    .mEdiAlertApplicationComponent(MediAlertApplication.get(this.getApplicationContext()).getMEdiAlertApplicationComponent())
+                    .build();
+        }
+        return activityComponent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getActivityComponent().inject(this);
         showLeftFragment();
     }
 
     public void showLeftFragment() {
-        getSupportFragmentManager().beginTransaction().add(R.id.leftFragment, new MedicineIntakeFragment(),
+        getSupportFragmentManager().beginTransaction().add(R.id.leftFragment,medicineIntakeFragment,
                 MedicineIntakeFragment.class.getSimpleName())
                 .addToBackStack(MedicineIntakeFragment.class.getSimpleName())
                 .commit();

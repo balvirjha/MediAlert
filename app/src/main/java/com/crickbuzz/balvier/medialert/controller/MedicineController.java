@@ -3,25 +3,34 @@ package com.crickbuzz.balvier.medialert.controller;
 import android.content.Context;
 import android.util.Log;
 
+import com.crickbuzz.balvier.medialert.ActivityContext;
+import com.crickbuzz.balvier.medialert.ApplicationContext;
 import com.crickbuzz.balvier.medialert.modal.MedicinePOJO;
 
 import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * Created by Balvier on 9/16/2017.
  */
 
+@Singleton
 public class MedicineController {
 
-    private static DatabaseHandler db;
+    @Inject
+    DatabaseHandler db;
     static Context contextActivity;
 
     private static MedicineController instance;
 
-    private MedicineController() {
+    @Inject
+    public MedicineController(@ApplicationContext Context context) {
+        contextActivity = context;
     }
 
-    public static MedicineController getInstance(Context context) {
+   /* public static MedicineController getInstance(Context context) {
         contextActivity = context;
         if (instance == null) {
             synchronized (MedicineController.class) {
@@ -31,7 +40,7 @@ public class MedicineController {
             }
         }
         return instance;
-    }
+    }*/
 
     public long addMedicine(MedicinePOJO medicinePOJO) {
         Log.e("bvc", "addMedicine called");
@@ -70,11 +79,11 @@ public class MedicineController {
 
     private DatabaseHandler getDatabaseHandler() {
         Log.e("bvc", "getDatabaseHandler called");
-        if (db == null) {
+       /* if (db == null) {
             return new DatabaseHandler(contextActivity);
-        } else {
-            return db;
-        }
+        } else {*/
+        return db;
+        // }
     }
 
 }

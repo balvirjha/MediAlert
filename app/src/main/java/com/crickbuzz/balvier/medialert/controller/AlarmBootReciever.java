@@ -23,11 +23,14 @@ import java.util.Random;
  */
 
 public class AlarmBootReciever extends BroadcastReceiver {
+
+    private MedicineController medicineController;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
             Log.e("bvc", "Override called");
-            List<MedicinePOJO> medicinePOJOList = MedicineController.getInstance(context).getAllMedicine();
+            List<MedicinePOJO> medicinePOJOList = medicineController.getAllMedicine();
             for (MedicinePOJO medicinePOJO : medicinePOJOList) {
                 if (medicinePOJO.isNotificationEnabled()) setAlarm(medicinePOJO, context);
             }

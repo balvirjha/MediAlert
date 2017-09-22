@@ -7,15 +7,20 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.crickbuzz.balvier.medialert.ActivityContext;
+import com.crickbuzz.balvier.medialert.ApplicationContext;
 import com.crickbuzz.balvier.medialert.modal.MedicinePOJO;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /**
  * Created by Balvier on 9/16/2017.
  */
-
+@Singleton
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
@@ -32,7 +37,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_NOTIFICATION_ENABLED = "noti_enabled";
     private static final String KEY_MEDICINE_TAKEN = "medicine_taken";
 
-    public DatabaseHandler(Context context) {
+    @Inject
+    public DatabaseHandler(@ApplicationContext Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -114,7 +120,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         List<String> dateLIst = Util.getTodayDateInRequiredFormat();
         List<MedicinePOJO> medicinePOJOList = new ArrayList<MedicinePOJO>();
         String selectQuery = "SELECT * FROM " + TABLE_MEDICINE + " where medicine_taken ='false' "
-                + "and date between " + "'" + dateLIst.get(0) +"'" + " and " + "'"  + dateLIst.get(1) + "'";
+                + "and date between " + "'" + dateLIst.get(0) + "'" + " and " + "'" + dateLIst.get(1) + "'";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -138,7 +144,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         List<MedicinePOJO> medicinePOJOList = new ArrayList<MedicinePOJO>();
         List<String> dateLIst = Util.getTodayDateInRequiredFormat();
         String selectQuery = "SELECT * FROM " + TABLE_MEDICINE + " where medicine_taken ='true' "
-                + "and date between " + "'" + dateLIst.get(0) +"'" + " and " + "'"  + dateLIst.get(1) + "'";
+                + "and date between " + "'" + dateLIst.get(0) + "'" + " and " + "'" + dateLIst.get(1) + "'";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
