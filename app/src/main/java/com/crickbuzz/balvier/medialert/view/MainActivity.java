@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showLeftFragment() {
-        getSupportFragmentManager().beginTransaction().add(R.id.leftFragment,medicineIntakeFragment,
+        getSupportFragmentManager().beginTransaction().add(R.id.leftFragment, medicineIntakeFragment,
                 MedicineIntakeFragment.class.getSimpleName())
                 .addToBackStack(MedicineIntakeFragment.class.getSimpleName())
                 .commit();
@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         } else {
             getSupportFragmentManager().popBackStack();
+            getSupportFragmentManager().executePendingTransactions();
             showLeftFragment();
         }
         if (getSupportActionBar() != null)
