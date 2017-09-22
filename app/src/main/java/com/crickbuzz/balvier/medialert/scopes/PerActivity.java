@@ -1,4 +1,4 @@
-package com.crickbuzz.balvier.medialert;
+package com.crickbuzz.balvier.medialert.scopes;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

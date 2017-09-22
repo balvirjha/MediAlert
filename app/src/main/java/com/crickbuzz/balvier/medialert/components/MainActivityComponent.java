@@ -1,9 +1,8 @@
-package com.crickbuzz.balvier.medialert.view;
+package com.crickbuzz.balvier.medialert.components;
 
-import com.crickbuzz.balvier.medialert.MEdiAlertApplicationComponent;
-import com.crickbuzz.balvier.medialert.PerActivity;
-
-import javax.inject.Singleton;
+import com.crickbuzz.balvier.medialert.modules.MainActivityModule;
+import com.crickbuzz.balvier.medialert.scopes.PerActivity;
+import com.crickbuzz.balvier.medialert.view.MainActivity;
 
 import dagger.Component;
 

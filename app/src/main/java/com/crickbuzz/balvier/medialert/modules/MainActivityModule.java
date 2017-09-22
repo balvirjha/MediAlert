@@ -1,9 +1,9 @@
-package com.crickbuzz.balvier.medialert.view;
+package com.crickbuzz.balvier.medialert.modules;
 
 import android.app.Activity;
 import android.content.Context;
 
-import com.crickbuzz.balvier.medialert.ActivityContext;
+import com.crickbuzz.balvier.medialert.scopes.ActivityContext;
 import com.crickbuzz.balvier.medialert.controller.MedicineController;
 
 import javax.inject.Inject;

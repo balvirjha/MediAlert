@@ -3,7 +3,10 @@ package com.crickbuzz.balvier.medialert;
 import android.app.Application;
 import android.content.Context;
 
+import com.crickbuzz.balvier.medialert.components.DaggerMEdiAlertApplicationComponent;
+import com.crickbuzz.balvier.medialert.components.MEdiAlertApplicationComponent;
 import com.crickbuzz.balvier.medialert.controller.MedicineController;
+import com.crickbuzz.balvier.medialert.modules.MediAlertApplicationModule;
 
 import javax.inject.Inject;
 

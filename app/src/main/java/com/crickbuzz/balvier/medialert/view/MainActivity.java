@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.crickbuzz.balvier.medialert.MediAlertApplication;
 import com.crickbuzz.balvier.medialert.R;
-import com.crickbuzz.balvier.medialert.controller.MedicineController;
+import com.crickbuzz.balvier.medialert.components.DaggerMainActivityComponent;
+import com.crickbuzz.balvier.medialert.components.MainActivityComponent;
+import com.crickbuzz.balvier.medialert.modules.MainActivityModule;
 
 import javax.inject.Inject;
 

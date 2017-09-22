@@ -1,6 +1,9 @@
-package com.crickbuzz.balvier.medialert;
+package com.crickbuzz.balvier.medialert.modules;
 
 import android.content.Context;
+
+import com.crickbuzz.balvier.medialert.MediAlertApplication;
+import com.crickbuzz.balvier.medialert.scopes.ApplicationContext;
 
 import dagger.Module;
 import dagger.Provides;

@@ -57,7 +57,8 @@ public class MedicineIntakeFragment extends Fragment implements View.OnClickList
     private CheckBox checkTaken, checkNotTaken, cancelAlarm;
     private LinearLayout intekeLayout;
     private boolean isOpenFromNotification;
-    private ReportFragment reportFragment;
+    @Inject
+    ReportFragment reportFragment;
     private Bundle bundle;
     private MedicineSerializable medicineParcelable;
     private List<MedicinePOJO> medicinePOJOList;
@@ -154,7 +155,6 @@ public class MedicineIntakeFragment extends Fragment implements View.OnClickList
             case R.id.buttomShowAllMissedReport:
                 medicinePOJOList = medicineController.getAllMissedMedicine();
                 if (medicinePOJOList.size() > 0) {
-                    reportFragment = new ReportFragment();
                     medicineParcelable = new MedicineSerializable(medicinePOJOList);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("medicineData", medicineParcelable);
@@ -172,7 +172,6 @@ public class MedicineIntakeFragment extends Fragment implements View.OnClickList
             case R.id.buttomShowAllTakenReport:
                 medicinePOJOList = medicineController.getAllTakenMedicine();
                 if (medicinePOJOList.size() > 0) {
-                    reportFragment = new ReportFragment();
                     medicineParcelable = new MedicineSerializable(medicinePOJOList);
                     bundle = new Bundle();
                     bundle.putSerializable("medicineData", medicineParcelable);

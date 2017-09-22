@@ -14,6 +14,8 @@ import com.crickbuzz.balvier.medialert.modal.MedicineSerializable;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by Balvier on 9/17/2017.
  */
@@ -23,6 +25,11 @@ public class ReportFragment extends Fragment {
     private ListView reportList;
     List<MedicinePOJO> medicinePOJOS;
     ReportListAdapter reportListAdapter;
+
+    @Inject
+    public ReportFragment(){
+
+    }
 
 
     @Override

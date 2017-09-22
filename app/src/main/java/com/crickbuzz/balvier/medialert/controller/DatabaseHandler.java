@@ -7,8 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.crickbuzz.balvier.medialert.ActivityContext;
-import com.crickbuzz.balvier.medialert.ApplicationContext;
+import com.crickbuzz.balvier.medialert.scopes.ApplicationContext;
 import com.crickbuzz.balvier.medialert.modal.MedicinePOJO;
 
 import java.util.ArrayList;

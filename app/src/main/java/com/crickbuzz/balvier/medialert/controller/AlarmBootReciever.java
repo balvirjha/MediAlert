@@ -18,13 +18,16 @@ import com.crickbuzz.balvier.medialert.view.MainActivity;
 import java.util.List;
 import java.util.Random;
 
+import javax.inject.Inject;
+
 /**
  * Created by Balvier on 9/16/2017.
  */
 
 public class AlarmBootReciever extends BroadcastReceiver {
 
-    private MedicineController medicineController;
+    @Inject
+    MedicineController medicineController;
 
     @Override
     public void onReceive(Context context, Intent intent) {
